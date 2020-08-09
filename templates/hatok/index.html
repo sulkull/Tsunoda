@@ -1,0 +1,110 @@
+{% extends 'hatok/base.html' %}
+{% block title %} Dụng cụ Nhật Bản {% endblock %}
+{% block content %}
+{% load static %}
+{% include 'hatok/include/slider.html' %}
+<div class="container-fluid justify-content-center w-limit">
+	<div class="row justify-content-center">
+	<div class="col-12 col-lg-10">
+		<div class="row top-menu mt-3">
+			<div class="col-6 col-sm-3">
+				<a href="{% url  'sanpham:danh-sach-sp' %}">
+                    <img src="/static/img/topicons/topicons_EN_01.jpg" alt="tìm sản phẩm"></a>
+				<!--<p>Find Products</p>-->
+			</div>
+			<div class="col-6 col-sm-3">
+				<a href="{{ cauhinh.youtube }}" target="_blank">
+                    <img src="/static/img/topicons/topicons_EN_02.jpg" alt="Official Youtube"></a>
+				<!--<p>Official Youtube</p>-->
+			</div>
+			<div class="col-6 col-sm-3" data-toggle="tooltip" data-placement="bottom" title="*Right crick on the hyper-links above and chose [save target as..] to download and save the catalog. *Adobe Reader DC(freeware) is needed to open PDF files.">
+				<a href="{{ cauhinh.catalog }}">
+                    <img src="/static/img/topicons/topicons_EN_03.jpg" alt="Catalog PDF"></a>
+				<!--<p>Catalog PDF</p>-->
+			</div>
+			<div class="col-6 col-sm-3">
+				<a href="{{ cauhinh.lienhe }}" target="_blank">
+                    <img src="/static/img/topicons/topicons_EN_04.jpg" alt="Contact"></a>
+				<!--<p>Contact</p>-->
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<!----Tin cập nhật--->
+<div class="news">
+	<div class="container-fluid w-limit mt-2 pt-2 pb-2">
+		<div class="row">
+			<div class="col-12 col-lg-10 offset-lg-1"><!--ニュースリリース-->
+				<h3 class="text-warning">Tin tức cập nhật</h3>
+                {% for  d in tt %}
+                    <p><span style="font-size: 12px;">Ngày {{ d.ngaytao|date:'d/m/yy' }}: </span> <a href="{% url 'main:tin-tuc' d.slug d.id %}" title="{{ d.ten }}">{{ d.ten|truncatewords:13 }}</a> - <b style="font-size: 11px;font-style: italic;">{{ d.luotxem }} views</b></p>
+                {% endfor %}
+
+				<p class="text-right"><strong><a href="{% url 'main:danh-sach-tin-tuc' %}" alt="">Xem thêm tin mới</a></strong></p>
+			</div>
+		</div>
+	</div>
+</div>
+<!----end cập nhật--->
+<div class="container-fluid w-limit justify-content-center">
+   	<div class="row">
+		<div class="col-12 col-lg-10 offset-lg-1 mt-5">
+			<h3 class="text-danger">Sản Phẩm Mới</h3>
+		</div>
+		<div class="col-12 p-0 top-newproducts">
+			<!-- Slider main container -->
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+                    {% for d in sp %}
+					<div class="swiper-slide">
+						<a href="{% url 'sanpham:chi-tiet-sp' d.slug %}"><img src="{{ d.hinhsp.url }}" alt="{{ d.ten }}"><p>{{ d.masp }}<br/>{{ d.ten }}</p></a>
+					</div>
+                    {% endfor %}
+				</div>
+
+				<!-- If we need navigation buttons -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+	<div class="col-12 col-lg-10 offset-lg-1 mt-5"><!--カテゴリ別-->
+		<h3 class="text-warning">Danh mục dụng cụ</h3>
+		<div class="row row-eq-height nodeco">
+            {% for d in dm %}
+			<div class="col-4 col-sm-3 col-md-2 p-0">
+				<div class="top-product">
+		            <a href="{% url 'sanpham:danh-muc-sp' d.slug %}" alt="">
+						<img src="{{ d.hinh.url }}" alt="{{ d.ten }}" title="{{ d.ten }}"/>
+						<h3>{{ d.ten }}</h3>
+					</a>
+            		<ul>
+                       {% for t in d.chitiet.all %}
+						<li>{{ t.ten }}</li>
+                       {% endfor %}
+					</ul>
+           		</div>
+           	</div>
+            {% endfor %}
+
+    	</div><!--カテゴリ別-->
+	</div>
+	<div class="col-12 col-lg-10 offset-lg-1 mt-5"><!--ブランド別-->
+		<h3 class="text-warning">Dòng sản phẩm</h3>
+		<div class="row row-eq-height top-brand">
+            {% for d in th %}
+		    <div class="col-6 col-md-4 p-2 px-sm-2 pale">
+			    <a href="{% url 'sanpham:danh-muc-th' d.slug %}"><img src="{{ d.hinh.url }}" alt="Thương hiệu {{ d.ten }}" title="Thương hiệu {{ d.ten }}"/></a>
+			</div>
+            {% endfor %}
+
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

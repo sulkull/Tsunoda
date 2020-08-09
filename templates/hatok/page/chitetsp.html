@@ -1,0 +1,253 @@
+{% extends 'hatok/base.html' %}
+{% load static %}
+{% block title %}{{ sp.ten }} {% endblock %}
+{% block content %}
+<div class="container-fluid w-limit">
+    <div class="row">
+        <!--メインコンテンツここから-->
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="row">
+                <div class="col-12 mt-3 backbtn">
+                    <a href="{% url 'sanpham:danh-muc-sp' sp.danhmucsp.slug %}">
+                        <button type="button" class="btn btn-outline-secondary"><i class="far fa-arrow-alt-circle-left"></i>{{ sp.danhmucsp }}</button>
+                    </a>
+                    <a href="{% url 'sanpham:danh-muc-th' sp.thuonghieusp.slug %}">
+                        <button type="button" class="btn btn-outline-secondary"><i class="far fa-arrow-alt-circle-left"></i> Thương hiệu {{ sp.thuonghieusp }}</button>
+                    </a>
+                </div>
+
+                <!--製品名タイトル-->
+                <div class="col-12 title">
+                    <h3>{{ sp.ten }}</h3>
+                    <p>{{ sp.masp }} </p>
+                </div>
+                <!--バネ・JIS・ECCENTRIC・新製品などのラベルはスニペットより挿入-->
+
+                <div class="col-12 col-sm-6">
+                    <a href="{{ sp.hinhsp.url }}" target="_blank">
+                        <img src="{{ sp.hinhsp.url }}" alt="{{ sp.ten }}" class="img-fluid" />
+                    </a>
+                    <p>Click để xem hình ở tab mới</p>
+                </div>
+
+                <div class="col-12 col-sm-6">
+
+                    <!--マーク類-->
+
+                    <div class="marks">
+                        {% for d in sp.thuoctinhsp.all %}
+                        <img src="{{d.hinh.url }}" alt="{{ d.ten }}" />
+                        {% endfor %}
+                    </div>
+                    <!--マークここまで-->
+                    <p style="font-size:11px;font-style: italic;float: right">Lượt xem : {{ sp.luotxem }}</p>
+                    <!--説明文-->
+                    <ul class="description">
+                        <li>
+                            {{ sp.motangan|safe }}
+                        </li>
+                    </ul>
+                    <!--価格とショップへのリンク-->
+                    <button type="button" class="btn btn-danger fa-pull-right" data-toggle="modal" data-target="#ordernow">
+                        <i class="fas fa-shopping-cart"></i> Mua Ngay
+                    </button>
+
+
+                    <!-- モーダル・ダイアログ -->
+                    <div class="modal fade" id="ordernow" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Mua Ngay Tại</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table width="450" border="2">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="col">Nơi bán</th>
+                                                <th scope="col">Link sản phẩm</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="color: red;">Shoppe</th>
+                                                <td>
+                                                    <a href="{{ sp.linkshoppe }}" target="_blank">
+                                                       <button type="button" class="btn btn-danger"style="background: red;">
+                                                            <i class="fas fa-shopping-cart"></i> Xem ngay
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="color: orange;">Lazada</th>
+                                                <td>
+                                                    <a href="{{ sp.linklazada }}" target="_blank">
+                                                       <button type="button" class="btn btn-danger" style="background: orange;">
+                                                            <i class="fas fa-shopping-cart"></i> Xem ngay
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="color: tomato;">Sendo</th>
+                                                <td>
+                                                    <a href="{{ sp.linksendo }}" target="_blank">
+                                                       <button type="button" class="btn btn-danger" style="background: tomato;">
+                                                            <i class="fas fa-shopping-cart"></i> Xem ngay
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="color: blue;">Tooljapan</th>
+                                                <td>
+                                                    <a href="{{ sp.linkshop }}" target="_blank">
+                                                       <button type="button" class="btn btn-danger" style="background: blue;">
+                                                            <i class="fas fa-shopping-cart"></i> Xem ngay
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--モーダルダイアログここまで-->
+
+                </div>
+            </div>
+        </div>
+        <!----- Mô tả ------>
+        <div class="col-12 col-lg-10 offset-lg-1 hirabun"><hr>
+            <center>
+                {{ sp.mota|safe }}
+            </center>
+        </div>
+         <!-----End Mô tả ------>
+        <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="details">
+                <div class="details-header">
+                   Thông số kỹ thuật
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-7">
+                        <ul class="list-group">
+                            {% if sp.nguyenlieusp == Null %}
+                                {% else %}
+                            <li class="list-group-item">Chất liệu  | {{ sp.nguyenlieusp|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.loxo == Null %}
+                                {% else %}
+                            <li class="list-group-item">Lò xo| {{ sp.loxo|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.docung == Null %}
+                                {% else %}
+                            <li class="list-group-item">Độ cứng | {{ sp.docung|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.docungluoicat == Null %}
+                                {% else %}
+                            <li class="list-group-item">Độ cứng lưỡi cắt | {{ sp.docungluoicat|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.docungthan == Null %}
+                                {% else %}
+                            <li class="list-group-item">Độ cứng thân | {{ sp.docungthan|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.xulybematsp == Null %}
+                                {% else %}
+                            <li class="list-group-item">Xử lý nhiệt bề mặt | {{ sp.xulybematsp|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.xulynhietsp == Null %}
+                                {% else %}
+                            <li class="list-group-item">Xử lý nhiệt | {{ sp.xulynhietsp|safe }}</li>
+                            {% endif %}
+
+                            {% if sp.xulytaycamsp == Null %}
+                                {% else %}
+                            <li class="list-group-item">Xử lý tay cầm| {{ sp.xulytaycamsp|safe }}</li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    <div class=" col-sm-5 col-12">
+                        {% if sp.hinhthongso %}
+                            <img src="{{ sp.hinhthongso.url }}" width="504" height="313" alt="{{ sp.ten }}" class="img-fluid" />
+                        {% else %}
+                            <p> Đang cập nhật ....</p>
+                        {% endif %}
+                    </div>
+                    <!--thông số kỹ thuật-->
+                    <div class="col-12 text-center">
+                        <!--chi tiết bảng thông số-->
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered">
+                            {{ sp.chitietthongso|safe }}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- #BeginLibraryItem -->
+<!-- #SEO-->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ sp.ten }}",
+    "image": ["https://tsunoda.vn{{ sp.hinhsp.url }}"],
+    "description": "{{ sp.ten|capfirst }} là một sản phẩm chất lượng tốt của công ty HATOK thương hiệu {{ sp.thuonghieusp|capfirst }} được nhập khẩu 100% từ Nhật Bản. ✅ Hàng luôn có sẵn ✅ Giao hàng toàn quốc ✅ Miễn phí tư vấn",
+    "sku": "{{ sp.masp }}",
+    "mpn": "{{ sp.masp }}",
+    "brand": {
+        "@type": "Thing",
+        "name": "{{ sp.thuonghieusp|capfirst }}"
+    },
+    "review": {
+        "@type": "Review",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4.8",
+            "bestRating": "5"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "HATOK"
+        }
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "bestRating": "5",
+        "ratingCount": "86"
+    },
+    "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "1000000",
+        "highPrice": "50000000",
+        "offerCount": "566",
+        "priceCurrency": "VND",
+        "availability":"InStock"
+    }
+}
+</script>
+<!-- #End Seo -->
+<style>
+    button.btn.btn-danger {
+    padding: 4px;
+    }
+</style>
+{% endblock %}

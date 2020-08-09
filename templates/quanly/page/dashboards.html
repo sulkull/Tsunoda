@@ -1,0 +1,105 @@
+{% extends 'quanly/main.html' %}
+{% load static %}
+{% block main %}
+    {% load humanize %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+     <script src="https://code.highcharts.com/highcharts.src.js"></script>
+<div class="content">
+    {% include 'quanly/inc/topbar.html' %}
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 xxl:col-span-9 grid grid-cols-12 gap-6">
+                        <!-- BEGIN: General Report -->
+                        <div class="col-span-12 mt-8">
+                            <div class="intro-y flex items-center h-10">
+                                <h2 class="text-lg font-medium truncate mr-5">
+                                    Báo cáo
+                                </h2>
+                                <a href="" class="ml-auto flex text-theme-1">
+                                    <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Tải lại </a>
+                            </div>
+                            {% if request.user.is_superuser %}
+                            <div class="grid grid-cols-12 gap-6 mt-5">
+                                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex">
+                                                <i data-feather="users" class="report-box__icon text-theme-10"></i>
+                                                <div class="ml-auto">
+                                                    <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
+                                                         title="Số người dùng">Thương hiệu <i data-feather="chevron-up"
+                                                                                                    class="w-4 h-4"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">{{ th.count }}</div>
+                                            <div class="text-base text-gray-600 mt-1">thương hiệu</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex">
+                                                <i data-feather="credit-card" class="report-box__icon text-theme-11"></i>
+                                                <div class="ml-auto">
+                                                    <div class="report-box__indicator bg-theme-12 tooltip cursor-pointer"
+                                                         title="sản phẩm"> Sản Phẩm
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">{{ sp.count }}</div>
+                                            <div class="text-base text-gray-600 mt-1">sản phẩm</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex">
+                                                <i data-feather="credit-card" class="report-box__icon text-theme-12"></i>
+                                                <div class="ml-auto">
+                                                    <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
+                                                         title="Số phòng trống">Tin tức</div>
+                                                </div>
+                                            </div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">{{ tt.count }}</div>
+                                            <div class="text-base text-gray-600 mt-1">bài viết</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex">
+                                                <i data-feather="dollar-sign" class="report-box__icon text-theme-6"></i>
+                                                <div class="ml-auto">
+                                                    <div class="report-box__indicator bg-theme-6 tooltip cursor-pointer"
+                                                         title="doanh thu"> Tổng doanh thu
+                                                         </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">Update....</div>
+                                            <div class="text-base text-gray-600 mt-1">doanh thu</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                 <div class="intro-y p-5 mt-12 sm:mt-5"></div>
+                                <h2 class="text-lg font-medium truncate mr-5">
+                                    Thống kê doanh thu {{ hoadon.TongtienHD }}
+                                </h2>
+                                <div class="intro-y box p-5 mt-12 sm:mt-5" id="my-chart"></div>
+                                {% else %}
+                                Bạn không có quyền truy cập trang này
+
+                            {% endif %}
+
+
+                        </div>
+                        <!-- END: General Report -->
+                 </div>
+                </div>
+
+            </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'quanly/main.html' %}
+{% load humanize %}
+{% block main %}
+<div class="content">
+    {% include 'quanly/inc/topbar.html' %}
+       <!-- END: Top Bar -->
+                <div class="intro-y flex items-center mt-8">
+                    <h2 class="text-lg font-medium mr-auto">
+                       {{ title }}
+                    </h2>
+                </div>
+        <!-- BEGIN: Form Layout -->
+                <div class="grid grid-cols-12 gap-6 mt-5" style="background: white">
+                    <div class="intro-y col-span-12 lg:col-span-6">
+                        <div class="intro-y box p-5">
+                            {% include 'quanly/page/tintuc/chuyenmuc/sua.html' %}
+                        </div>
+                    </div>
+                    <!----Ben phải----->
+                    <div class="intro-x col-span-12 lg:col-span-6">
+                        <div class="intro-y box p-5">
+                            <table class="table table-report -mt-2" id="show">
+                                    <thead>
+                                        <tr>
+                                            <th class="whitespace-no-wrap">Tên </th>
+                                            <th class="text-center whitespace-no-wrap">Tác vụ</th>
+                                        </tr>
+                                    </thead>
+                                    {% include 'quanly/page/tintuc/chuyenmuc/list.html' %}
+                                </table>
+                        </div>
+                    </div>
+</div>
+        <!-- END: Form Layout -->
+</div>
+
+{% endblock %}

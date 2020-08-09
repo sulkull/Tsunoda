@@ -1,0 +1,57 @@
+{% extends 'hatok/base.html' %}
+{% load static %}
+{% block title %} Danh mục sản phẩm {% endblock %}
+{% block content %}
+<div class="container-fluid w-limit">
+   <div class="row mt-3">
+		<div class="col-12 col-lg-10 offset-lg-1">
+			<div class="row"><!--メインコンテンツここから--><!-- #BeginLibraryItem "/Library/英_品目別リスト.lbi" -->
+	<div class="col-4 col-md-3 d-none d-sm-block"><!--大きいときのサイドメニュー-->
+		<div class="menu-orange">
+			<div class="menu-orange-header">Danh mục sản phẩm</div>
+			<div class="menu-orange-text">
+                {% for d in dm %}
+				<a href="{% url 'sanpham:danh-muc-sp' d.slug %}" alt="{{ d.ten }}"><li>{{ d.ten }}</li></a>
+                {% endfor %}
+                </div>
+		</div>
+		<a href="{{ cauhinh.catalog }}" target="_blank"><img src="/static/img/etc/catalog_e.jpg" width="235" alt="tải catalog sản phẩm" class="img-fluid"/><p>Tải Catalog(PDF/25.3MB)</p></a>
+
+    <p class="smallest">*Right crick on the hyper-links above and chose "save target as.." to download and save the catalog.<br/>*Adobe Reader DC(freeware) is needed to open PDF files. </p>
+            </div>
+
+<div class="col-12 d-block d-sm-none left-menu-mobile mb-2"><!--小さいときはトップメニュー-->
+    <div class="dropdown">
+  		<button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+  Danh mục</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for d in dm %}
+			<a class="dropdown-item" href="#" alt="{{ d.ten }}">{{ d.ten }}</a>
+            {% endfor %}
+</div>
+  </div>
+</div><!-- #EndLibraryItem --><div class="col-12 col-md-9 col-sm-8 mt-3">
+	<h3 class="text-warning">TẤT CẢ SẢN PHẨM</h3>
+	<div class="row row-eq-height"><div class="line-orange newtag"><span>SẢN PHẨM MỚI</span></div>
+  <!--サムネ一覧表示-->
+
+	<div class="col-6 col-md-3 item_thumb">
+        {% for d in spmoi %}
+		<a href="{% url 'sanpham:chi-tiet-sp' d.slug %}"><img src="{{ d.hinhsp.url }}" class="img-fluid" alt=""/>{{ d.masp }}<br>{{ d.ten }}</a>
+{#            <span class="lbl spring">Spring</span>#}
+            <span class="lbl lbnew">new!</span>
+	    {% endfor %}
+    </div>
+
+  <div class="line-orange"></div>
+
+<div class="col-6 col-md-3 item_thumb">
+    {% for d in sp %}
+    <a href="{% url 'sanpham:chi-tiet-sp' d.slug %}">
+    <img src="{{ d.hinhsp.url }}" class="img-fluid" alt="{{ d.ten }}"/>{{ d.masp }}<br>{{ d.ten }}</a>
+    <span class="lbl jis">JIS</span>
+    {% endfor %}
+</div>
+    </div></div></div></div>
+</div></div><!-- #BeginLibraryItem "/Library/英_フッタ.lbi" -->
+{% endblock %}

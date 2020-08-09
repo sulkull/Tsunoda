@@ -1,0 +1,57 @@
+{% extends 'quanly/main.html' %}
+{% block main %}
+    {% load humanize %}
+<div class="content">
+    {% include 'quanly/inc/topbar.html' %}
+       <!-- END: Top Bar -->
+                <div class="intro-y flex items-center mt-8">
+                    <h2 class="text-lg font-medium mr-auto">
+                       {{ title }}
+                    </h2>
+                </div>
+    <div class="pos gap-5 mt-5">
+    <!---Menu --->
+    <!---end Menu --->
+        <!-- Tat ca  -->
+        <div class="tab-content">
+            <div class="tab-content__pane active" id="all">
+                <a href="{% url 'quanly:Them-Tintuc' %}"><button class="button w-50 mr-1 mb-2 bg-theme-9 text-white">Thêm tin tức</button></a>
+                        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                                <table class="table table-report -mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="whitespace-no-wrap">Tiêu đề</th>
+                                            <th class="whitespace-no-wrap">Danh mục</th>
+                                            <th class="text-center whitespace-no-wrap">Tác vụ</th>
+                                        </tr>
+                                    </thead><tbody>
+                                    {%  for d in tintuc %}
+                                        <tr class="intro-x">
+                                            <td class="w-70">
+                                                <a href="{% url 'main:tin-tuc' d.slug d.id %}" target="_blank" class="font-medium"><p>{{ d.ten }}</p></a>
+                                                <div class="text-gray-600 text-xs whitespace-no-wrap"> Ngày đăng {{ d.ngaytao|date:'d/m/yy' }}</div>
+                                            </td>
+                                            <td class="w-40">
+                                                <p>
+                                                    {% for t in d.danhmuc.all %}
+                                                    <a href="{% url 'main:danh-muc-tin-tuc' t.slug %}" >{{ t.ten }}</a>,
+                                                    {% endfor %}
+                                                </p>
+                                            </td>
+                                            <td class="table-report__action w-56">
+                                                <div class="flex justify-center items-center">
+                                                    <a class="flex items-center mr-3" href="{% url 'quanly:Sua-Tintuc' d.id %}" target="_blank"> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Sửa </a>
+                                                    <a class="flex items-center text-theme-6" href="{% url 'quanly:xoa-Tintuc' d.id %}" target="_blank"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Xoá </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                </table>
+                            </div>
+            </div>
+            <!-- END: -->
+    </div>
+</div>
+</div></div>
+{% endblock %}

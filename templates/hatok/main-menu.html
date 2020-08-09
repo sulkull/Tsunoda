@@ -1,0 +1,165 @@
+{% load static %}
+<div class="container-fluid w-limit">
+		 <div class="row">
+			 <div class="col-12 col-lg-10 offset-lg-1">
+				 <div class="row align-items-end">
+					 <div class="col p-2">
+						<a href="/"><img src="{{ cauhinh.logo }}" class="img-fluid m-0 d-sm-none" width="80" alt=""/>
+                            <img src="{{ cauhinh.logo }}" class="img-fluid m-0 d-none d-sm-inline-block "width="118" height="80" alt=""/>
+                        </a>
+			 		 </div>
+                     <div class="col p-2">
+                        <form class="pc" method="GET" action="{% url 'timkiem:tim-kiem' %}">
+                            <input type="text" name="q" placeholder="Nhập mã , tên sản phẩm ,...">
+                            <button class="btn-sucess" type="submit">Tìm</button>
+                        </form>
+			 		 </div>
+			 		 <div class="col right-top">
+						 <span><div id="google_translate_element"></div></span>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+	</div>
+ <div class="menulist-bg">
+     <!--menu pc-->
+	<div class="container-fluid w-limit menulist d-none d-sm-block">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-9 navs">
+		        <ul class="p-0">
+					<li><a href="{% url 'main:trang-chu' %}">Trang chủ</a></li>
+					<li class="search">
+                        <a href="{% url 'sanpham:danh-sach-sp' %}">Sản phẩm</a>
+                        <div class="search-bar">
+                            <ul class="chid">
+                                {% for d in dm %}
+                                <li class="chid"><a href="{% url 'sanpham:danh-muc-sp' d.slug %}#">{{ d.ten }}</a></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="search">
+                        <a href="{% url 'sanpham:danh-sach-th' %}">Thương hiệu</a>
+                        <div class="search-bar">
+                            <ul class="chid">
+                                {% for d in th %}
+                                <li class="chid"><a href="{% url 'sanpham:danh-muc-th' d.slug %}">{{ d.ten }}</a></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'main:danh-sach-tin-tuc' %}">Tin tức</a></li>
+       				<li><a href="{{ cauhinh.gioithieu }}">Giới thiệu</a></li>
+       				<li><a href="{{ cauhinh.lienhe }}">Liên hệ</a></li>
+
+                    <li class="search">
+                        Tìm
+                        <div class="search-bar">
+                             <form class="pc" method="GET" action="{% url 'timkiem:tim-kiem' %}">
+                                <input type="text" name="q" placeholder="Nhập mã , tên sp ,...">
+                            </form>
+                        </div>
+                    </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+     <style>
+        .search{
+            position:relative;
+            display:inline-block;
+            color:white;
+            padding:14px 16px;
+            float:right;
+            z-index: 999;
+        }
+        .search-bar{
+            position:absolute;
+            display:none;
+            left:0;
+            top:35px;
+            width: 200px;
+        }
+        input[type=text] {
+            width: 300px;
+            box-sizing: border-box;
+            border: 1px solid #dd9a09;
+            border-radius: 4px;
+            font-size: 16px;
+            outline:none;
+            padding: 5px 14px;
+            transition: width 0.4s ease-in-out;
+        }
+        .search:hover{
+            background-color:lightpink;
+            color:black;
+        }
+        .search:hover .search-bar{
+            display:block;
+        }
+        form input[type="text"]:focus{
+             width: 300px;
+            background-color:lightpink;
+        }
+         button.btn-sucess {
+            margin-left: -50px;
+            border-radius: 1px;
+            background: #fe9900;
+            color: white;
+            width: 44px;
+            height: 35px;
+            border: 1px solid #fe9900;
+        }
+         @media only screen and (max-width: 600px) {
+             input[type=text] {
+            width: 242px;
+            box-sizing: border-box;
+            border: 1px solid #dd9a09;
+            border-radius: 4px;
+            font-size: 16px;
+            outline:none;
+            padding: 5px 14px;
+            transition: width 0.4s ease-in-out;
+        }
+             .col.right-top {
+                display: none;
+            }
+         }
+         ul.chid {
+                background: grey;
+                padding: 10px;
+                margin: 0;
+            }
+         li.chid{
+             display: contents;
+         }
+        li.chid > a {
+            padding: 10px 0px 10px 5px;
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid #ffffff2b;
+        }
+          
+     </style>
+     <!--end menu pc-->
+     <!--menu mobile-->
+    <div class="container-fluid w-limit menulist-mb-en d-block d-sm-none text-center clearfix p-0">
+		<div>
+			<a href="{% url 'main:trang-chu' %}"><img src="{% static '/img/topicons/mobile1.svg' %}" alt=""><p>Trang chủ</p></a>
+	   </div>
+	   <div>
+		   <a href="{% url 'sanpham:danh-sach-sp' %}"><img src="{% static '/img/topicons/mobile2.svg' %}" alt=""><p>Sản phẩm</p></a>
+	   </div>
+	   <div>
+		   <a href="{{ cauhinh.gioithieu }}"><img src="{% static '/img/topicons/mobile3.svg' %}" alt=""><p>Giới thiệu</p></a>
+	   </div>
+	   <div>
+		   <a href="{{ cauhinh.lienhe }}"><img src="{% static '/img/topicons/mobile4.svg' %}" alt=""><p>Liên hệ</p></a>
+	   </div>
+   </div>
+     <!--end menu mobile-->
+</div>

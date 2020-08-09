@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load seo %}
+{% seo as cauhinh  %}
+{% for cauhinh in cauhinh %}
+{% include 'hatok/header.html' %}
+    <header>
+    <title> {% block title %}{% endblock %}| {{ cauhinh.title }}</title>
+    </header>
+
+{% include 'hatok/main-menu.html' %}
+<body>
+{% block content %}
+{% endblock %}
+{% include 'hatok/footer.html' %}
+{% endfor %}
+</body>
+</html>

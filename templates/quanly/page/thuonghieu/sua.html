@@ -1,0 +1,30 @@
+<form id="dang-bai" action="" data-url="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id ="cl_edit">
+        <label>Tên loại </label>
+             {{ form.ten }}
+            {{ form.ten.errors }}
+    </div>
+    <p></p>
+    <div class="mt-5">
+        <label>Hình</label>
+             {{ form.hinh }}
+            {{ form.hinh.errors }}
+    </div>
+    <p></p>
+    <div class="mt-5">
+        <label>Banner</label>
+             {{ form.banner }}
+            {{ form.banner.errors }}
+    </div>
+    <p></p>
+    <div id ="mt-5">
+        <label>Hiển thị ở trang chủ</label>
+             {{ form.hienthi }}
+            {{ form.hienthi.errors }}
+    </div>
+
+    <div class="text-left mt-5">
+        <button type="submit" id="btn_dang_bai" class="button w-24 bg-theme-1 text-white">Cập nhật</button>
+    </div>
+</form>

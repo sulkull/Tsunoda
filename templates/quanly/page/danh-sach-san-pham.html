@@ -1,0 +1,69 @@
+{% extends 'quanly/main.html' %}
+{% block main %}
+    {% load humanize %}
+<div class="content">
+    {% include 'quanly/inc/topbar.html' %}
+       <!-- END: Top Bar -->
+                <div class="intro-y flex items-center mt-8">
+                    <h2 class="text-lg font-medium mr-auto">
+                       {{ title }}
+                    </h2>
+                </div>
+    <div class="pos gap-5 mt-5">
+    <!---Menu --->
+    <!---end Menu --->
+        <!-- Tat ca  -->
+        <div class="tab-content">
+            <div class="tab-content__pane active" id="all">
+                       <div class="intro-y datatable-wrapper box p-5 mt-5">
+                            <a href="{% url 'quanly:Them-san-pham' %}"><button class="button text-white bg-theme-1 shadow-md mr-2">Thêm sản phẩm mới</button></a>
+                       <div style="padding: 10px"></div>
+                           <table class="table table-report table-report--bordered display datatable w-full">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-b-2 whitespace-no-wrap">Tên sản phẩm</th>
+                                            <th class="border-b-2 text-center whitespace-no-wrap">Giá</th>
+                                            <th class="border-b-2 text-center whitespace-no-wrap">Thương hiệu</th>
+                                            <th class="border-b-2 text-center whitespace-no-wrap">Lượt xem</th>
+                                            <th class="border-b-2 text-center whitespace-no-wrap">Tác vụ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%  for d in sanpham %}
+                                        <tr class="border-b">
+                                            <td>
+                                                <a href="{% url 'sanpham:chi-tiet-sp' d.slug %}"target="_blank" class="font-medium whitespace-no-wrap">{{ d.ten }}</a>
+                                                <div class="text-gray-600 text-xs whitespace-no-wrap"> Mã SP : {{ d.masp }}</div>
+                                            </td>
+                                            <td class="text-center border-b">
+                                                {% if d.gia == Null %}
+                                                    Không có
+                                                {% else %}
+                                                <p>{{ d.gia|intcomma }} vnđ</p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center border-b">
+                                                <p>{{ d.thuonghieusp }}</p>
+                                            </td>
+                                            <td class="text-center border-b">
+                                                 <div class="flex items-center justify-center text-theme-9">
+                                                     <i data-feather="eye" class="w-4 h-4 mr-2"></i>{{ d.luotxem }} </div>
+                                            </td>
+                                            <td class="table-report__action w-56">
+                                                <div class="flex justify-center items-center">
+                                                    <a class="flex items-center mr-3" href="{% url 'quanly:sua-san-pham' d.id %}" target="_blank"> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Sửa </a>
+                                                    <a class="flex items-center text-theme-6" href="{% url 'quanly:xoa-san-pham' d.id %}" target="_blank"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Xoá </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+                            </div>
+            </div>
+            <!-- END: -->
+    </div>
+</div>
+</div>
+{% endblock %}

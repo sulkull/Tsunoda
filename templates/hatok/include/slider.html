@@ -1,0 +1,42 @@
+<div class="container-fluid p-0 mb-3 w-limit"><!-- スライド -->
+   <div id="index-billboard" class="carousel slide" data-ride="carousel">
+			  <ol class="carousel-indicators">
+                  {% for s in banner %}
+                       {% if forloop.counter == 1  %}
+    				<li data-target="#index-billboard" data-slide-to="{{ s.thutu }}" class="active"></li>
+                       {% else %}
+                      <li data-target="#index-billboard" data-slide-to="{{ s.thutu }}"></li>
+                       {% endif %}
+                  {% endfor %}
+  				</ol>
+  			<div class="carousel-inner">
+                {% for s in banner %}
+                    {% if forloop.counter == 1  %}
+                    <div class="carousel-item active">
+                        <a href="{{ s.link }}" target="_blank" alt="{{ s.title }}">
+                            <img class="d-none d-sm-block w-100" src="{{ s.hinh.url }}" alt="{{ s.title }}"/>
+                            <img class="d-block d-sm-none w-100" src="{{ s.hinh_mobile.url }}" alt="{{ s.title }}"/>
+                        </a>
+                    </div>
+                        {% else %}
+                        <div class="carousel-item">
+      				    <a href="{{ s.link }}" target="_blank" alt="{{ s.title }}">
+						<img class="d-none d-sm-block w-100" src="{{ s.hinh.url }}" alt="{{ s.title }}"/>
+						<img class="d-block d-sm-none w-100" src="{{ s.hinh_mobile.url }}" alt="{{ s.title }}"/>
+					</a>
+    			</div>
+                    {% endif %}
+            {% endfor %}
+
+				<a class="carousel-control-prev" href="#index-billboard" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Trước</span>
+				</a>
+				<a class="carousel-control-next" href="#index-billboard" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Sau</span>
+				</a>
+  			</div>
+		</div>
+</div>
+<!--container-fluid-->

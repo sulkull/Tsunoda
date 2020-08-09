@@ -1,0 +1,219 @@
+{% extends 'quanly/main.html' %}
+
+{% block main %}
+<div class="content">
+    {% include 'quanly/inc/topbar.html' %}
+       <!-- END: Top Bar -->
+                <div class="intro-y flex items-center mt-8">
+                    <h2 class="text-lg font-medium mr-auto">
+                       {{ title }}
+                    </h2>
+                </div>
+    <form id="dang-bai" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.errors }}
+        <!-- BEGIN: Form Layout -->
+                <div class="grid grid-cols-12 gap-6 mt-5" style="background: white">
+                    <div class="intro-y col-span-12 lg:col-span-6">
+                        <div class="intro-y box p-5">
+                            <div>
+                                <label>Nhập tên sản phẩm (*)</label>
+                                {{ form.ten }}
+                                {{ form.ten.errors }}
+
+                            </div>
+
+                            <div class="mt-3">
+                                <label>Mô tả ngắn (*)</label>
+                                <div class="mt-2">
+                                     {{ form.motangan }}
+                                    {{ form.motangan.errors }}
+                                </div>
+                            </div>
+
+                        <div class="tieude" style="font-weight: 500;color: white;background: #3c6cff;margin-top: 15px;padding: 3px;">Thuộc tính </div>
+                            <div class="mt-3">
+                                <div class="sm:grid grid-cols-2 gap-2">
+                                     <div class="relative mt-2">
+                                         <label>Nguyên liệu sp</label>
+                                        <div class="relative mt-2">
+                                            {{ form.nguyenlieusp }}
+                                            {{ form.nguyenlieusp.errors }}
+                                        </div>
+                                     </div>
+                                    <div class="relative mt-2">
+                                        <label>Xử lý nhiệt</label>
+                                        <div class="relative mt-2">
+                                            {{ form.xulynhietsp }}
+                                            {{ form.xulynhietsp.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="relative mt-2">
+                                        <label>Xử lý bề mặt</label>
+                                        <div class="relative mt-2">
+                                            {{ form.xulybematsp }}
+                                            {{ form.xulybematsp.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="relative mt-2">
+                                        <label>Xử lý tay cầm</label>
+                                        <div class="relative mt-2">
+                                            {{ form.xulytaycamsp }}
+                                            {{ form.xulytaycamsp.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="relative mt-2">
+                                        <label>Xử lý lò xo</label>
+                                        <div class="relative mt-2">
+                                            {{ form.loxo }}
+                                            {{ form.loxo.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="relative mt-2">
+                                        <label>Độ cứng thân</label>
+                                        <div class="relative mt-2">
+                                            {{ form.docungthan }}
+                                            {{ form.docungthan.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="relative mt-2">
+                                        <label>Độ cứng lưỡi cắt</label>
+                                        <div class="relative mt-2">
+                                            {{ form.docungluoicat }}
+                                            {{ form.docungluoicat.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="relative mt-2">
+                                        <label>Độ cứng</label>
+                                        <div class="relative mt-2">
+                                            {{ form.docung }}
+                                            {{ form.docung.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="relative mt-2">
+                                        <label>Hình ảnh thông số</label>
+                                        <div class="relative mt-2">
+                                            {{ form.hinhthongso }}
+                                            {{ form.hinhthongso.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="relative mt-2">
+                                        <label>Hình ảnh sản phẩm (*)</label>
+                                        <div class="relative mt-2">
+                                            {{ form.hinhsp }}
+                                            {{ form.hinhsp.errors }}
+                                             </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!----Ben phải----->
+                    <div class="intro-x col-span-12 lg:col-span-6">
+                        <div class="intro-y box p-5">
+                            <div class="mt-3">
+                                <div class="sm:grid grid-cols-2 gap-2">
+                                     <div class="relative mt-2">
+                                         <label>Nhập giá <i>(nếu có)</i></label>
+                                        <div class="relative mt-2">
+                                            {{ form.gia }}
+                                            {{ form.gia.errors }}
+                                            <div class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600">vnđ</div>
+                                        </div>
+                                     </div>
+                                    <div class="relative mt-2">
+                                        <label>Mã sản phẩm (*)</label>
+                                        <div class="relative mx-auto">
+                                            {{ form.masp }}
+                                            {{ form.masp.errors }}
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="sm:grid grid-cols-2 gap-2">
+                                     <div class="relative mt-2">
+                                         <label>Tác dụng</label>
+                                        <div class="relative mt-2">
+                                            {{ form.thuoctinhsp }}
+                                            {{ form.thuoctinhsp.errors }}
+                                            <div></div>
+                                        </div>
+                                     </div>
+                                    <div class="relative mt-2">
+                                        <label>Thương hiệu</label>
+                                        <div class="relative mt-2">
+                                            {{ form.thuonghieusp }}
+                                            {{ form.thuonghieusp.errors }}
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <label>Danh mục </label>
+                                <div class="mt-2">
+                                    {{ form.danhmucsp }}
+                                </div>
+                            </div>
+                            <div class="tieude" style="font-weight: 500;color: white;background: #3c6cff;margin-top: 76px;padding: 3px;">Link Bán Hàng</div>
+                            <div class="mt-3">
+                                <label>Link shoppes</label>
+                                <div class="mt-2">
+                                    {{ form.linkshoppe }}
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <label>Link Sendo</label>
+                                <div class="mt-2">
+                                    {{ form.linksendo }}
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <label>Link Lazada</label>
+                                <div class="mt-2">
+                                    {{ form.linklazada }}
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <label>Link tuỳ chọn</label>
+                                <div class="mt-2">
+                                    {{ form.linkshop }}
+                                </div>
+                            </div>
+                        </div>
+                    <!----end cot----->
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <label>Mô tả</label>
+                    <div class="mt-2">
+                        {{ form.mota }}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <label>Thông sô</label>
+                    <div class="mt-2">
+                        {{ form.chitietthongso }}
+                    </div>
+                </div>
+
+                <div class="text-right mt-5">
+                    <button type="submit" id="toast" class="button w-24 bg-theme-1 text-white">Lưu lại</button>
+                </div>
+        <!-- END: Form Layout -->
+    </form>
+</div>
+    <style>
+        .note-editor.note-frame {display: grid;}
+    </style>
+{% endblock %}

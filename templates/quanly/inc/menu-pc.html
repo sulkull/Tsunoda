@@ -1,0 +1,163 @@
+{% load static %}
+<nav class="side-nav">
+                <a href="#" class="intro-x flex items-center pl-5 pt-4">
+                    <img alt="website quản lý căn hộ" class="w-6" src="/static/logo.svg">
+                    <span class="hidden xl:block text-white text-lg ml-3"> WEB<span class="font-medium">Bán kìm</span> </span>
+                </a>
+                <div class="side-nav__devider my-6"></div>
+        <ul>
+                    <li>
+                        <a href="{% url 'quanly:main' %}" class="side-menu side-menu--active">
+                            <div class="side-menu__icon"> <i data-feather="home"></i> </div>
+                            <div class="side-menu__title"> Bảng điều khiển </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                            <div class="side-menu__title"> Quản sản phẩm <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="{% url 'quanly:Them-san-pham' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Thêm sản phẩm </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%  url 'quanly:Danh-sach-san-pham' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Danh sách sản phẩm </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                            <div class="side-menu__title"> Quản lý Danh mục <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="{% url 'quanly:Them-danh-muc' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Thêm danh mục</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%  url 'quanly:Them-tt-danh-muc' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Thuộc tính danh mục </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%  url 'quanly:Them-thuong-hieu' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title">Thương hiệu </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+            <!--------->
+            <li>
+                        <a href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>
+                            <div class="side-menu__title"> Thông số SP <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="{% url 'quanly:Them-nguyenlieu' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Nguyên liệu</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%  url 'quanly:Them-loxo' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Lò xo</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%  url 'quanly:Them-xulybemat' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Xử lý bề mặt</div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{%  url 'quanly:Them-xulytaycam' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Xử lý tay cầm</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%  url 'quanly:Them-xulynhiet' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Xử lý nhiệt</div>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+            <!--------->
+                    <li>
+                        <a class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                            <div class="side-menu__title"> Cấu hình <i data-feather="chevron-down" class="side-menu__sub-icon"></i></div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="{% url 'quanly:cau-hinh-seo' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Cấu hình website </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+{#                    <li>#}
+{#                        <a href="#" class="side-menu">#}
+{#                            <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>#}
+{#                            <div class="side-menu__title"> Đơn hàng </div>#}
+{#                        </a>#}
+{#                    </li>#}
+                    <li>
+                        <a class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="credit-card"></i> </div>
+                            <div class="side-menu__title"> Tin tức <i data-feather="chevron-down" class="side-menu__sub-icon"></i></div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="{% url 'quanly:Them-chuyenmuc' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Chuyên mục </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'quanly:Danh-sach-Tintuc' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title">Tin tức </div>
+                                </a>
+                            </li>
+                             <li>
+                                <a href="{% url 'quanly:Them-Tintuc' %}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title">Thêm Tin tức </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+{#                    <li>#}
+{#                        <a href="#" class="side-menu">#}
+{#                            <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>#}
+{#                            <div class="side-menu__title"> Đấu giá </div>#}
+{#                        </a>#}
+{#                    </li>#}
+
+                    <li class="side-nav__devider my-6"></li>
+                </ul>
+
+</nav>

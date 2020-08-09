@@ -1,0 +1,85 @@
+<div class="footer-wr">
+	 <div class="container-fluid w-limit">
+		 <div class="row footer justify-content-center">
+			 <div class="col-12 col-md-10">
+			 	<div class="row">
+    	<div class="col-6 col-md-3">
+   	 	<p>Danh mục sản phẩm</p>
+		<ul>
+		 {% for d in dm %}
+        <li><a href="{% url 'sanpham:danh-muc-sp' d.slug %}">{{ d.ten }}</a></li>
+            {% endfor %}
+		</ul>
+        </div>
+    	<div class="col-6 col-md-3">
+		<p>Thương hiệu</p>
+		<ul>
+            {% for d in th %}
+        <li><a href="{% url 'sanpham:danh-muc-th' d.slug %}">{{ d.ten }}</a></li>
+            {% endfor %}
+		</ul>
+        </div>
+    	<div class="col-6 col-md-3">
+		<p><a href="{{ cauhinh.gioithieu }}">Thông tin công ty</a></p>
+		<ul>
+		<li><a href="{{ cauhinh.lienhe }}">President Message</a></li>
+		<li><a href="{{ cauhinh.gioithieu }}">Giới thiệu</a></li>
+		<li><a href="{{ cauhinh.lienhe }}">Chính sách</a></li>
+		<li><a href="{{ cauhinh.lienhe }}">Ý tưởng</a></li>
+		<li><a href="{{ cauhinh.lienhe }}">Hợp tác đại lý</a></li>
+		<li><a href="{{ cauhinh.lienhe }}">Địa chỉ</a></li>
+		</ul>
+        </div>
+    	<div class="col-6 col-md-3">
+		<p><a href="{{ cauhinh.catalog }}">Catalog.pdf</a></p>
+		<p><a href="{{ cauhinh.lienhe }}">Liên hệ</a></p>
+		</div>
+        <div class="col-10 offset-1">
+		<p class="text-right"><a href="#" class="text-light">Privacy and Policy</a></p>
+		<p class="text-light text-center">Copyright © HATOK Corporation Limited. All rights reserved. </p>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+    <p id="page-top"><a href="#">TOP</a></p>
+<!-- #EndLibraryItem --><!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
+  <script>
+    var mySwiper = new Swiper('.swiper-container', {  
+	  preventClicks:false,
+      slidesPerView: 5,
+      spaceBetween: 20,
+	  autoplay:2000,
+      loop: true,
+      pagination: '.swiper-pagination',
+	  nextButton: '.swiper-button-next',
+	  prevButton: '.swiper-button-prev',
+	  breakpoints:{
+		767:{
+			   	slidesPerView: 3,
+      			spaceBetween: 0,
+		}  
+	  }
+    });
+  </script>	  <!--ビルボードのオンマウススライド停止を解除-->
+	<script>
+	 $(function () {
+  $('#index-billboard').carousel({
+    pause: false
+  });
+});
+	 </script>
+
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
